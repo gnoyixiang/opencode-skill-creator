@@ -49,5 +49,13 @@
     "creator",
     "plugin"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnoyixiang/opencode-skill-creator.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }
