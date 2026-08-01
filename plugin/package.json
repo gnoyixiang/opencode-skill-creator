@@ -13,7 +13,8 @@
     "opencode-skill-creator": "dist/bin/cli.js"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
+    "verify:package": "npm run build && node scripts/verify-tarball.mjs",
     "dev": "tsc --watch",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",

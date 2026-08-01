@@ -1,5 +1,5 @@
 ---
-name: skill-creator
+name: opencode-skill-creator
 description: "Create, evaluate, benchmark, and package OpenCode agent skills. Use when users want to create a skill from scratch, edit an existing skill, run evals to test a skill, benchmark skill performance, or package a skill for distribution."
 ---
 
@@ -280,7 +280,7 @@ This produces `my-skill.tar.gz` in the parent directory. The user can extract it
 
 ## Plugin Tools Available
 
-The skill-creator plugin registers these tools you can call directly:
+The opencode-skill-creator plugin registers these tools you can call directly:
 
 | Tool | Purpose |
 |---|---|
