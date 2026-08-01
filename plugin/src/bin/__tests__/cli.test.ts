@@ -2,7 +2,15 @@ import { describe, it, beforeEach, afterEach } from "node:test";
 import assert from "node:assert";
 import { existsSync, mkdtempSync, writeFileSync, readFileSync, rmSync } from "fs";
 import { join } from "path";
-import { installGlobal, installProject, listPlugins, getConfig, writeConfig, PLUGIN_NAME } from "../../bin/cli.js";
+import {
+  installGlobal,
+  installProject,
+  listPlugins,
+  getConfig,
+  writeConfig,
+  getPluginEntry,
+  getCurrentVersion,
+} from "../../bin/cli.js";
 
 let tmpDir = "";
 
@@ -61,7 +69,7 @@ describe("installGlobal", () => {
     assert.match(msg, /Installed/);
 
     const config = getConfig(configPath);
-    assert.deepEqual(config.plugin, ["other-plugin", PLUGIN_NAME]);
+    assert.deepEqual(config.plugin, ["other-plugin", getPluginEntry(getCurrentVersion())]);
   });
 
   it("creates config if missing", () => {
@@ -70,12 +78,12 @@ describe("installGlobal", () => {
     assert.match(msg, /Installed/);
 
     const config = getConfig(configPath);
-    assert.deepEqual(config.plugin, [PLUGIN_NAME]);
+    assert.deepEqual(config.plugin, [getPluginEntry(getCurrentVersion())]);
   });
 
   it("reports already installed", () => {
     const configPath = join(tmpDir, "opencode.json");
-    writeConfig(configPath, { plugin: [PLUGIN_NAME] });
+    writeConfig(configPath, { plugin: [getPluginEntry(getCurrentVersion())] });
 
     const msg = installGlobal(configPath);
     assert.match(msg, /already installed/);
@@ -103,6 +111,6 @@ describe("installProject", () => {
     assert.match(msg, /Installed/);
 
     const config = getConfig(configPath);
-    assert.deepEqual(config.plugin, ["existing", PLUGIN_NAME]);
+    assert.deepEqual(config.plugin, ["existing", getPluginEntry(getCurrentVersion())]);
   });
 });

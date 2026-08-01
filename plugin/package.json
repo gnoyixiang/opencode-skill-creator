@@ -1,6 +1,6 @@
 {
-  "name": "opencode-skill-creator",
-  "version": "0.1.0",
+  "name": "@gnoyx/opencode-skill-creator",
+  "version": "0.1.1",
   "description": "Create, evaluate, benchmark, and package OpenCode agent skills",
   "type": "module",
   "main": "dist/index.js",
@@ -10,7 +10,7 @@
     }
   },
   "bin": {
-    "opencode-skill-creator": "./dist/bin/cli.js"
+    "opencode-skill-creator": "dist/bin/cli.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",

@@ -1,8 +1,14 @@
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
+#!/usr/bin/env node
+import { readFileSync, writeFileSync, mkdirSync, realpathSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
-export const PLUGIN_NAME = "opencode-skill-creator";
+export const PLUGIN_NAME = "@gnoyx/opencode-skill-creator";
+
+export function getCurrentVersion(): string {
+  const packageJsonPath = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "package.json");
+  return JSON.parse(readFileSync(packageJsonPath, "utf-8")).version;
+}
 
 export function getConfig(configPath: string): Record<string, unknown> {
   try {
@@ -43,31 +49,60 @@ FLAGS
 `);
 }
 
+export function getPluginEntry(version?: string): string {
+  return version ? `${PLUGIN_NAME}@${version}` : PLUGIN_NAME;
+}
+
+export function parsePluginEntry(entry: string): { name: string; version: string | null } {
+  const match = entry.match(/^(@?[^@]+)@(.+)$/);
+  return match ? { name: match[1], version: match[2] } : { name: entry, version: null };
+}
+
 export function installGlobal(configPath: string): string {
   const config = getConfig(configPath);
   const plugins = listPlugins(config);
+  const version = getCurrentVersion();
+  const newEntry = getPluginEntry(version);
 
-  if (plugins.includes(PLUGIN_NAME)) {
-    return `${PLUGIN_NAME} is already installed globally.`;
+  const existingIndex = plugins.findIndex((p) => parsePluginEntry(p).name === PLUGIN_NAME);
+  if (existingIndex >= 0) {
+    const existing = parsePluginEntry(plugins[existingIndex]);
+    if (existing.version === version) {
+      return `${PLUGIN_NAME} is already installed at v${version}.`;
+    }
+    plugins[existingIndex] = newEntry;
+    config.plugin = plugins;
+    writeConfig(configPath, config);
+    return `Updated ${PLUGIN_NAME} from v${existing.version} to v${version} in ${configPath}`;
   }
 
-  config.plugin = [...plugins, PLUGIN_NAME];
+  config.plugin = [...plugins, newEntry];
   writeConfig(configPath, config);
-  return `Installed ${PLUGIN_NAME} into ${configPath}`;
+  return `Installed ${PLUGIN_NAME}@${version} into ${configPath}`;
 }
 
 export function installProject(projectDir: string): string {
   const projectConfigPath = join(projectDir, ".opencode", "opencode.json");
   const config = getConfig(projectConfigPath);
   const plugins = listPlugins(config);
+  const version = getCurrentVersion();
+  const newEntry = getPluginEntry(version);
 
-  if (plugins.includes(PLUGIN_NAME)) {
-    return `${PLUGIN_NAME} is already installed in this project.`;
+  const existingIndex = plugins.findIndex((p) => parsePluginEntry(p).name === PLUGIN_NAME);
+  if (existingIndex >= 0) {
+    const existing = parsePluginEntry(plugins[existingIndex]);
+    if (existing.version === version) {
+      return `${PLUGIN_NAME} is already installed at v${version}.`;
+    }
+    plugins[existingIndex] = newEntry;
+    config.plugin = plugins;
+    writeConfig(projectConfigPath, config);
+    return `Updated ${PLUGIN_NAME} from v${existing.version} to v${version} in ${projectConfigPath}`;
   }
 
-  config.plugin = [...plugins, PLUGIN_NAME];
+  config.plugin = [...plugins, newEntry];
   writeConfig(projectConfigPath, config);
-  return `Installed ${PLUGIN_NAME} into ${projectConfigPath}`;
+  return `Installed ${PLUGIN_NAME}@${version} into ${projectConfigPath}`;
 }
 
 export function parseArgs(args: string[]): { command: string; flags: string[] } {
@@ -93,7 +128,12 @@ export function main(args: string[]): string | null {
   return installGlobal(globalConfigPath);
 }
 
-if (import.meta.url.startsWith("file://") && process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+const isMainModule =
+  import.meta.url.startsWith("file://") &&
+  process.argv[1] &&
+  fileURLToPath(import.meta.url) === realpathSync(process.argv[1]);
+
+if (isMainModule) {
   const result = main(process.argv.slice(2));
   if (result) console.log(`✓ ${result}`);
 }
