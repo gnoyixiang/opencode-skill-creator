@@ -1,0 +1,54 @@
+{
+  "name": "opencode-skill-creator",
+  "version": "0.1.0",
+  "description": "Create, evaluate, benchmark, and package OpenCode agent skills",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "opencode-skill-creator": "./dist/bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --check src/",
+    "format:fix": "prettier --write src/",
+    "test": "node --import tsx --test src/**/__tests__/*.test.ts",
+    "test:coverage": "c8 node --import tsx --test src/**/__tests__/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "verify": "npm run lint && npm run format && npm run typecheck && npm run test:coverage",
+    "prepublishOnly": "tsc"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.18.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.0.0",
+    "c8": "^12.0.0",
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.6",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^8.65.0"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "keywords": [
+    "opencode",
+    "skill",
+    "creator",
+    "plugin"
+  ],
+  "license": "MIT"
+}

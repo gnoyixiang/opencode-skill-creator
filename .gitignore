@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.tar.gz
+plugin/dist/
+plugin/coverage/
+.DS_Store

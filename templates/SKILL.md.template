@@ -1,0 +1,59 @@
+---
+name: <<SKILL_NAME>>
+description: <<SKILL_DESCRIPTION>>
+---
+
+# <<SKILL_NAME>>
+
+## What I do
+
+Write a brief description of what this skill enables the agent to do.
+
+## When to use this skill
+
+List specific triggers and contexts where this skill should be activated. Be explicit — OpenCode uses the description field for triggering, and this body section gives detail.
+
+## Instructions
+
+Write clear, concise instructions for the agent to follow. Use imperative form.
+
+Explain the **why** behind important instructions — LLMs have good theory of mind and will follow instructions more effectively when they understand the reasoning.
+
+### Example structure for instructions:
+
+1. **Setup** — Any prerequisites or configuration
+2. **Core workflow** — The main steps to follow
+3. **Output format** — What the result should look like
+4. **Edge cases** — What to do in unusual situations
+
+## Examples
+
+### Example 1: [Describe the example]
+
+**Input:**
+```
+Example input here
+```
+
+**Expected output:**
+```
+Example output here
+```
+
+### Example 2: [Another example]
+
+**Input:**
+```
+Example input here
+```
+
+**Expected output:**
+```
+Example output here
+```
+
+## References
+
+- `references/` — Documentation and reference material loaded as needed
+- `scripts/` — Executable scripts for deterministic tasks
+- `assets/` — Files used in the output (templates, icons, boilerplate)

@@ -1,0 +1,29 @@
+{
+  "skill_name": "my-skill",
+  "evals": [
+    {
+      "id": "test-001",
+      "prompt": "A realistic user task for this skill to handle",
+      "input_files": [],
+      "assertions": [
+        {"type": "contains", "value": "expected result"}
+      ]
+    },
+    {
+      "id": "test-002",
+      "prompt": "Another task covering a different use case",
+      "input_files": [],
+      "assertions": [
+        {"type": "file_exists", "value": "output.csv"}
+      ]
+    },
+    {
+      "id": "test-003",
+      "prompt": "An edge case the skill should handle",
+      "input_files": [],
+      "assertions": [
+        {"type": "regex", "value": "\\d{4}-\\d{2}-\\d{2}"}
+      ]
+    }
+  ]
+}
