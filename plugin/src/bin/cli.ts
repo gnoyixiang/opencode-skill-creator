@@ -36,8 +36,8 @@ export function printHelp(): void {
 opencode-skill-creator — Skill creation tools for OpenCode
 
 USAGE
-  npx opencode-skill-creator install [--global|--project]
-  npx opencode-skill-creator install --help
+  npx @gnoyx/opencode-skill-creator install [--global|--project]
+  npx @gnoyx/opencode-skill-creator install --help
 
 COMMANDS
   install   Install the plugin into opencode config

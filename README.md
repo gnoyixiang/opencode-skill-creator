@@ -17,13 +17,13 @@ This project provides a **skill** (`SKILL.md`) and a **plugin** (`plugin/`) for 
 ### Global (recommended)
 
 ```bash
-npx opencode-skill-creator install --global
+npx @gnoyx/opencode-skill-creator install --global
 ```
 
 ### Project-local
 
 ```bash
-npx opencode-skill-creator install --project
+npx @gnoyx/opencode-skill-creator install --project
 ```
 
 Both methods register the plugin with OpenCode. The plugin provides 5 tools that the skill-creator skill can invoke.
