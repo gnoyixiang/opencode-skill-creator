@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/gnoyixiang/opencode-skill-creator/compare/opencode-skill-creator-v0.2.0...opencode-skill-creator-v0.2.1) (2026-08-01)
+
+
+### Bug Fixes
+
+* point package homepage to valid README URL ([9ecf267](https://github.com/gnoyixiang/opencode-skill-creator/commit/9ecf267936a380de897158e83e4052f0b89bffd9))
+
 ## [0.2.0](https://github.com/gnoyixiang/opencode-skill-creator/compare/opencode-skill-creator-v0.1.1...opencode-skill-creator-v0.2.0) (2026-08-01)
 
 
