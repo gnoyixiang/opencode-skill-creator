@@ -26,7 +26,7 @@ npx @gnoyx/opencode-skill-creator install --global
 npx @gnoyx/opencode-skill-creator install --project
 ```
 
-Both methods register the plugin with OpenCode. The plugin provides 5 tools that the skill-creator skill can invoke.
+Both methods register the plugin with OpenCode. The plugin provides 5 tools that the opencode-skill-creator skill can invoke.
 
 ## Quick Start
 

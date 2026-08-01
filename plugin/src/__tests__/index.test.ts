@@ -17,7 +17,7 @@ afterEach(() => {
 describe("copySkillAssets", () => {
   it("copies SKILL.md to the target directory", () => {
     mkdirSync(join(tmpDir, "skill-dir"), { recursive: true });
-    writeFileSync(join(tmpDir, "SKILL.md"), "---\nname: skill-creator\ndescription: test\n---\nBody", "utf-8");
+    writeFileSync(join(tmpDir, "SKILL.md"), "---\nname: opencode-skill-creator\ndescription: test\n---\nBody", "utf-8");
     mkdirSync(join(tmpDir, "agents"), { recursive: true });
     writeFileSync(join(tmpDir, "agents", "grader.md"), "# Grader", "utf-8");
     mkdirSync(join(tmpDir, "templates"), { recursive: true });
