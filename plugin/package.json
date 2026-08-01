@@ -54,6 +54,7 @@
     "type": "git",
     "url": "git+https://github.com/gnoyixiang/opencode-skill-creator.git"
   },
+  "homepage": "https://github.com/gnoyixiang/opencode-skill-creator#readme",
   "publishConfig": {
     "access": "public",
     "provenance": true
